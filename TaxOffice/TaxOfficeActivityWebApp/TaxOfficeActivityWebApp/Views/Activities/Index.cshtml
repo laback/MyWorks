@@ -1,0 +1,71 @@
+﻿@model TaxOfficeActivityWebApp.ViewModels.ActivityViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center"><h1>Виды деятельности</h1></div>
+
+<p>
+    <a class="btn btn-outline-dark" asp-action="Create">Добавить</a>
+    <a class="btn btn-outline-dark" asp-action="ClearCache">Очистить фильтр</a>
+</p>
+
+<div class="row, text-left">
+    @using (Html.BeginForm("Index", "Activities", FormMethod.Get))
+    {
+        <fieldset>
+            Наименование вида деятельности: @Html.TextBox("activityName", Model.ActivityName)
+            <input class="btn btn-outline-dark" type="submit" value="Найти" />
+        </fieldset>
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Activities.FirstOrDefault().ActivityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activities.FirstOrDefault().Tax)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Activities)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActivityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tax)
+                </td>
+                <td>
+                    <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.ActivityId">Изменить</a> |
+                    <a class="btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.ActivityId">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-outline-dark">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-outline-dark">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}

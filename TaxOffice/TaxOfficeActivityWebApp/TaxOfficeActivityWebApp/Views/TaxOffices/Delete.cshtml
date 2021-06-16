@@ -1,0 +1,32 @@
+﻿@model TaxOfficeActivityWebApp.TaxOffice
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Удаление</h1>
+
+<div>
+    <h4>налоговый офис</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TaxOfficeName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TaxOfficeName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.District.DistrictName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.District.DistrictName)
+        </dd class>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="TaxOfficeId" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a class="btn btn-outline-dark" asp-action="Index">Назад</a>
+    </form>
+</div>

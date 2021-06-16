@@ -1,0 +1,57 @@
+﻿@model TaxOfficeActivityWebApp.ActivityAccounting
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Удаление</h1>
+
+<div>
+    <h4>Деятельность предпринимателя</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Entrepreneur)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Entrepreneur.EntrepreneurId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Activity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Activity.ActivityId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Income)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Income)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quarter)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quarter)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IsTaxPaid)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IsTaxPaid)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ActivityAccountingId" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a class="btn btn-primary" asp-action="Index">Назад</a>
+    </form>
+</div>

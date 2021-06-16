@@ -1,0 +1,108 @@
+﻿@model TaxOfficeActivityWebApp.ViewModels.ActivityAccountingViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center"><h1>Деятельность предпринимателей</h1></div>
+
+<p>
+    @if (User.IsInRole("Главный бухгалтер") || User.IsInRole("Бухгалтер"))
+    {
+        <a class="btn btn-outline-dark" asp-action="Create">Добавить</a>
+    }
+    <a class="btn btn-outline-dark" asp-action="ClearCache">Очистить фильтр</a>
+</p>
+
+<div class="row, text-left">
+    @using (Html.BeginForm("Index", "ActivitiesAccounting", FormMethod.Get))
+    {
+        <fieldset>
+            ФИО предпринимателя: @Html.TextBox("fullName", Model.FullName)
+            Вид деятельности: @Html.TextBox("activityName", Model.ActivityName)
+            <input class="btn btn-outline-dark" type="submit" value="Найти" />
+        </fieldset>
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ActivitiesAccounting.FirstOrDefault().Entrepreneur.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActivitiesAccounting.FirstOrDefault().Activity.ActivityName)
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortState=@Model.SortViewModel.IncomeSort>
+                @Html.DisplayNameFor(model => model.ActivitiesAccounting.FirstOrDefault().Income)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortState=@Model.SortViewModel.YearSort>
+                @Html.DisplayNameFor(model => model.ActivitiesAccounting.FirstOrDefault().Year)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortState=@Model.SortViewModel.QuarterSort>
+                @Html.DisplayNameFor(model => model.ActivitiesAccounting.FirstOrDefault().Quarter)</a>
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ActivitiesAccounting.FirstOrDefault().IsTaxPaid)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ActivitiesAccounting)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Entrepreneur.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.ActivityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Income)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quarter)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsTaxPaid)
+                </td>
+                <td>
+                    @if (User.IsInRole("Главный бухгалтер") || User.IsInRole("Бухгалтер"))
+                    {   
+                        <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.ActivityAccountingId">Изменить</a>
+                        <a class="btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.ActivityAccountingId">Удалить</a>
+                    }
+                        
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-outline-dark">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-outline-dark">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}

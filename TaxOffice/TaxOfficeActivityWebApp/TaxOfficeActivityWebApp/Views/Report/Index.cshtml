@@ -1,0 +1,53 @@
+﻿@model TaxOfficeActivityWebApp.ViewModels.ReportViewModel
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="text-left">
+            <h1>
+                Отчёт за квартал
+            </h1>
+        </div>
+
+        @using (Html.BeginForm("Index", "Report", FormMethod.Get))
+        {
+            <p><label>Год</label>
+            <input asp-for="Year" data-val- /></p>
+            <p><label>Квартал</label>
+            <input asp-for="Quarter" /></p>
+            <input class="btn btn-outline-dark" type="submit" value="Сформировать отчёт" />
+        }
+        <div class="text-left">Деятельность предпринимателей за указанный квартал</div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="text-left">
+            <h1>
+                Отчёт предпринимателя
+            </h1>
+        </div>
+        @using (Html.BeginForm("Index", "Report", FormMethod.Get))
+        {
+            <p><label>ФИО предпринимателя</label>
+            <select asp-for="FullName" class="form-control" asp-items="ViewBag.EntrepreneurId"></select></p>
+            <input class="btn btn-outline-dark" type="submit" value="Сформировать отчёт" />
+        }
+        <div class="text-left">Деятельность предпринимателя</div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="text-left">
+            <h1>
+                Статистика
+            </h1>
+        </div>
+        @using (Html.BeginForm("Index", "Report", FormMethod.Get))
+        {
+            <label>Год</label>
+            <input asp-for="StatisticYear" />
+            <input class="btn btn-outline-dark" type="submit" value="Сформировать статистику" />
+        }
+        <div class="text-left">Проценты оплаченных и неоплаченных налогов</div>
+    </div>
+
+</div>

@@ -1,0 +1,67 @@
+﻿@model TaxOfficeActivityWebApp.ViewModels.DistrictViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center"><h1>Районы</h1></div>
+
+<p>
+    <a class="btn btn-outline-dark" asp-action="Create">Добавить</a>
+    <a class="btn btn-outline-dark" asp-action="ClearCache">Очистить фильтр</a>
+</p>
+
+<div class="row, text-left">
+    @using (Html.BeginForm("Index", "Districts", FormMethod.Get))
+    {
+        <fieldset>
+            Наименование районы: @Html.TextBox("districtName", Model.DistrictName)
+            <input class="btn btn-outline-dark" type="submit" value="Найти" />
+        </fieldset>
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Districts.FirstOrDefault().DistrictName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Districts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DistrictName)
+                </td>
+                <td>
+                    <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.DistrictId">Изменить</a> |
+                    <a class="btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.DistrictId">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-outline-dark">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-outline-dark">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}
+

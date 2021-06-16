@@ -1,0 +1,79 @@
+﻿@model TaxOfficeActivityWebApp.ViewModels.EntrepreneurViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center"><h1>Предприниматели</h1></div>
+
+<p>
+    @if (User.IsInRole("Главный бухгалтер"))
+    {
+        <a class="btn btn-outline-dark" asp-action="Create">Добавить</a>
+    }
+    <a class="btn btn-outline-dark" asp-action="ClearCache">Очистить фильтр</a>
+</p>
+
+<div class="row, text-left">
+    @using (Html.BeginForm("Index", "Entrepreneurs", FormMethod.Get))
+    {
+        <fieldset>
+            ФИО предпринимателя: @Html.TextBox("fullName", Model.FullName)
+            Наименование офиса: @Html.TextBox("taxOfficeName", Model.TaxOfficeName)
+            <input class="btn btn-outline-dark" type="submit" value="Найти" />
+        </fieldset>
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Entrepreneurs.FirstOrDefault().FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entrepreneurs.FirstOrDefault().TaxOffice.TaxOfficeName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Entrepreneurs)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaxOffice.TaxOfficeName)
+                </td>
+                <td>
+                    @if (User.IsInRole("Главный бухгалтер"))
+                    { 
+                        <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.EntrepreneurId">Изменить</a>
+                        <a class="btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.EntrepreneurId">Удалить</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-outline-dark">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-outline-dark">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}

@@ -1,0 +1,37 @@
+﻿@model TaxOfficeActivityWebApp.TaxOffice
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Добавление</h1>
+
+<h4>Налоговый офис</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DistrictId" class="control-label">Наименование района</label>
+                <select asp-for="DistrictId" class ="form-control" asp-items="ViewBag.DistrictId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaxOfficeName" class="control-label"></label>
+                <input asp-for="TaxOfficeName" class="form-control" />
+                <span asp-validation-for="TaxOfficeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-outline-dark" asp-action="Index">Назад</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
