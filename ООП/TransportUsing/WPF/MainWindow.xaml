@@ -1,0 +1,20 @@
+﻿<Window x:Name="Авторизация" x:Class="WPF.MainWindow" Background="LightSlateGray"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="154" Width="322">
+    <Grid Margin="0,0,4.4,-2.2" Height="119" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="309*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <PasswordBox Background="WhiteSmoke" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="Password" HorizontalAlignment="Left" Margin="190,53,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="-0.016,1.057" Height="29"/>
+        <TextBox Background="WhiteSmoke" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="LoginText" HorizontalAlignment="Left" Height="29" Margin="190,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="LightSteelBlue" x:Name="Login" Content="Вход" HorizontalAlignment="Left" Margin="122,93,0,0" Click="Login_Click" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.008,-0.49" Height="19"/>
+        <Label HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="29" Margin="26,10,0,0" Content="Логин" VerticalAlignment="Top" Width="100"/>
+        <Label HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="29" Margin="26,53,0,0" Content="Пароль" VerticalAlignment="Top" Width="100"/>
+    </Grid>
+</Window>

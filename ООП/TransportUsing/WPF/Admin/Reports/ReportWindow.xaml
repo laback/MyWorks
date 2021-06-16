@@ -1,0 +1,30 @@
+﻿<Window x:Class="WPF.Admin.Reports.ReportWindow" Background="LightSlateGray"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.Admin.Reports"
+        mc:Ignorable="d"
+        Title="Отчёты" Height="170.689" Width="764.734" Closed="Window_Closed">
+    <Grid>
+        <Label Content="Начало периода" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="104"/>
+        <Label Content="Конец периода" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.137,-0.964" Width="104"/>
+        <DatePicker x:Name="BeginDatePicker" HorizontalAlignment="Left" Margin="153,12,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="EndDatePicker" HorizontalAlignment="Left" Margin="153,67,0,0" VerticalAlignment="Top"/>
+        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Водитель" HorizontalAlignment="Left" Margin="293,10,0,0" VerticalAlignment="Top" Width="89"/>
+        <ComboBox x:Name="FIOCB" HorizontalAlignment="Left" Margin="293,41,0,0" VerticalAlignment="Top" Width="89"/>
+        <Button Background="DarkSeaGreen" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" x:Name="SaveDriverReportButton" Content="Сохранить" HorizontalAlignment="Left" Margin="293,71,0,0" VerticalAlignment="Top" Width="89" Click="SaveDriverReportButton_Click"/>
+        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Транспорт" HorizontalAlignment="Left" Margin="406,12,0,0" VerticalAlignment="Top" Height="24" Width="89"/>
+        <ComboBox x:Name="TransportCB" HorizontalAlignment="Left" Margin="406,41,0,0" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.449,-0.654"/>
+        <Button Background="DarkSeaGreen" x:Name="SaveTransportRepostButton" Content="Сохранить" HorizontalAlignment="Left" Margin="406,71,0,0" VerticalAlignment="Top" Width="89" Click="SaveTransportRepostButton_Click"/>
+        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Марка" HorizontalAlignment="Left" Margin="518,12,0,0" VerticalAlignment="Top" Width="89" Height="24"/>
+        <ComboBox x:Name="MarkCB" HorizontalAlignment="Left" Margin="518,41,0,0" VerticalAlignment="Top" Width="89"/>
+        <Button Background="DarkSeaGreen" x:Name="SaveMarkReportButton" Content="Сохранить" HorizontalAlignment="Left" Margin="518,71,0,0" VerticalAlignment="Top" Width="89" Click="SaveMarkReportButton_Click"/>
+        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Тип транспорта" HorizontalAlignment="Left" Margin="631,12,0,0" VerticalAlignment="Top" Height="24" Width="109"/>
+        <ComboBox x:Name="TypeCB" HorizontalAlignment="Left" Margin="631,41,0,0" VerticalAlignment="Top" Width="109"/>
+        <Button Background="DarkSeaGreen" x:Name="SaveTypeReportButton" Content="Сохранить" HorizontalAlignment="Left" Margin="631,71,0,0" VerticalAlignment="Top" Width="109" Click="SaveTypeReportButton_Click"/>
+        <Button Background="LightSteelBlue" x:Name="CloseButton" Content="Назад" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Width="86" Click="Button_Click"/>
+        <Label x:Name="PathLabel" Content="Полный путь отчётов :" HorizontalAlignment="Left" Margin="131,102,0,0" VerticalAlignment="Top" Width="609"/>
+
+    </Grid>
+</Window>

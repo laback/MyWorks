@@ -1,0 +1,41 @@
+﻿<Window x:Class="WPF.OperatorWindow" Background="Silver"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF"
+        mc:Ignorable="d"
+        Title="OperatorWindow" Height="450" Width="800" Closed="Window_Closed">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="169*"/>
+            <ColumnDefinition Width="95*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl Name="Tabs" Margin="0,10,-0.4,56.4" Background="LightSlateGray" Grid.ColumnSpan="2">
+            <TabItem x:Name="Routes" Header="Маршруты" IsManipulationEnabled="True">
+                <DataGrid x:Name="RoutesGrid" Margin="0,34,0,34" FontFamily="Times New Roman" FontSize="14">
+                    <DataGrid.Columns>
+                        <DataGridComboBoxColumn x:Name="routeDriveCB" SelectedValueBinding="{Binding UserId}" ClipboardContentBinding="{x:Null}" Header="ФИО водителя"/>
+                        <DataGridComboBoxColumn x:Name="routeTransportCB" SelectedValueBinding="{Binding TransportId}" ClipboardContentBinding="{x:Null}" Header="Номер транспорта"/>
+                        <DataGridTextColumn Binding="{Binding Date, StringFormat=d}" ClipboardContentBinding="{x:Null}" Header="Дата"/>
+                        <DataGridTextColumn Binding="{Binding Distance}" ClipboardContentBinding="{x:Null}" Header="Расстояние"/>
+                        <DataGridTextColumn Binding="{Binding Passengers}" ClipboardContentBinding="{x:Null}" Header="Пассажиры"/>
+                        <DataGridTextColumn Binding="{Binding Cargo}" ClipboardContentBinding="{x:Null}" Header="Груз"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem x:Name="Transports" Header="Транспорт" IsManipulationEnabled="True">
+                <DataGrid x:Name="TransportsGrid" Margin="0,34,0,34" FontFamily="Times New Roman" FontSize="14">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding TransportId}" ClipboardContentBinding="{x:Null}" Header="Номер транспорта" IsReadOnly="true"/>
+                        <DataGridComboBoxColumn x:Name ="transportMarkCB"  SelectedValueBinding="{Binding MarkId}" Header="Марка транспорта"/>
+                        <DataGridComboBoxColumn x:Name ="transportTypeCB"  SelectedValueBinding="{Binding TransportTypeId}" Header="Тип транспорта"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+        <Button Background="Tomato" x:Name="delete" Content="Удалить" HorizontalAlignment="Left" Margin="74,385,0,0" VerticalAlignment="Top" Width="90" Height="25" Click="delete_Click" Grid.Column="1" RenderTransformOrigin="0.718,0.633"/>
+        <Button Background="DarkSeaGreen" x:Name="save" Content="Сохранить" HorizontalAlignment="Left" Margin="185.525,385,0,0" VerticalAlignment="Top" Width="89" Height="25" Grid.Column="1" Click="save_Click"/>
+        <Button Background="LightSteelBlue" x:Name="Close" Content="Назад" HorizontalAlignment="Left" Margin="10,385,0,0" VerticalAlignment="Top" Width="89" Height="24" Click="Close_Click"/>
+    </Grid>
+</Window>

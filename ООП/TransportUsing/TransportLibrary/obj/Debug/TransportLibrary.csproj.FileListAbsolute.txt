@@ -1,0 +1,7 @@
+D:\Чужие лабы\ООП\Транспорт\TransportUsing\TransportLibrary\bin\Debug\TransportLibrary.dll
+D:\Чужие лабы\ООП\Транспорт\TransportUsing\TransportLibrary\bin\Debug\TransportLibrary.pdb
+D:\Чужие лабы\ООП\Транспорт\TransportUsing\TransportLibrary\obj\Debug\TransportLibrary.csproj.CoreCompileInputs.cache
+D:\Чужие лабы\ООП\Транспорт\TransportUsing\TransportLibrary\obj\Debug\TransportLibrary.dll
+D:\Чужие лабы\ООП\Транспорт\TransportUsing\TransportLibrary\obj\Debug\TransportLibrary.pdb
+D:\Чужие лабы\ООП\Транспорт\TransportUsing\TransportLibrary\bin\Debug\System.ComponentModel.Annotations.dll
+D:\Чужие лабы\ООП\Транспорт\TransportUsing\TransportLibrary\obj\Debug\TransportLibrary.csproj.CopyComplete
