@@ -1,0 +1,105 @@
+﻿@model BakeryWebApp.ViewModels.ProductsPlansViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="bg-light">
+    <div class="text-center"><h1>План проивоздства</h1></div>
+    <div class="row, text-left">
+        <p>
+            @if(User.IsInRole("admin") || User.IsInRole("manager"))
+            {
+                <a class="btn btn-outline-dark" asp-action="Create">Добавить</a>
+            }
+            <a class="btn btn-outline-dark" asp-action="ClearFilter">Очистить фильтр</a>
+        </p>
+    </div>
+    @using (Html.BeginForm("Index", "ProductsPlans", FormMethod.Get))
+    {
+        <div class="row">
+            <div class="col-sm-4">
+                <label>Изделие</label>
+                @Html.TextBox("productName", Model.ProductName)
+            </div>
+            <div class="col-sm-3">
+                <label>Дата</label>
+                <input asp-for="PlanDate"/>
+            </div>
+            <div class="col-sm-4">
+                <label>Количество</label>
+                @Html.TextBox("countOfProd", Model.Count)
+            </div>
+            <div class="col-sm-1, pull-right">
+                <input class="btn btn-outline-dark" type="submit" value="Найти" />
+            </div>
+        </div>
+    }
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortState=@Model.SortViewModel.ProductPlanProductSort>
+                    @Html.DisplayNameFor(model => model.ProductsPlans.FirstOrDefault().Product.ProductName)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortState=@Model.SortViewModel.ProductPlanDateSort>
+                    @Html.DisplayNameFor(model => model.ProductsPlans.FirstOrDefault().DayPlan.Date)
+                </a>
+            </th>
+
+            <th>
+                <a asp-action="Index" asp-route-sortState=@Model.SortViewModel.ProductPlanCountSort>
+                    @Html.DisplayNameFor(model => model.ProductsPlans.FirstOrDefault().Count)
+                </a>
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ProductsPlans)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DayPlan.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Count)
+            </td>
+            <td>
+                @if(User.IsInRole("admin") || User.IsInRole("manager"))
+                {                     
+                    <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.ProductPlan">Изменить</a>
+                    <a class="btn btn-outline-dark" asp-action="Delete" asp-route-id="@item.ProductPlan">Удалить</a>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-outline-dark">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-outline-dark">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}
+
